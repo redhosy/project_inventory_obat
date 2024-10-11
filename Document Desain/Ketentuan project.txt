@@ -1,0 +1,11 @@
+frontend : react.js
+Backend Framework: Node.js + Express.js
+Database: PostgreSQL
+State Management: Vuex
+UI Framework: Vuetify atau Element UI
+Routing: Vue Router
+Build Tools: Webpack atau Vite
+Deployment: Netlify atau Vercel
+Testing: Cypress dan Jest
+API: Axios
+Version Control: Git
