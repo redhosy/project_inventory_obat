@@ -1,0 +1,36 @@
+@startuml
+actor Admin
+participant "Sistem" as Sistem
+participant "Database" as Database
+
+' Proses login
+Admin -> Sistem: Login
+Sistem -> Database: Validasi User di Database
+Database --> Sistem: Konfirmasi User Valid
+Sistem --> Admin: Tampilkan Menu Utama
+
+' Proses Cetak Laporan Obat Masuk
+Admin -> Sistem: Pilih Cetak Laporan Obat Masuk
+Sistem -> Database: Ambil Data Obat Masuk
+Database --> Sistem: Kirim Data Obat Masuk
+Sistem -> Admin: Kirim File Laporan Obat Masuk (PDF/Excel)
+
+' Proses Cetak Laporan Obat Keluar
+Admin -> Sistem: Pilih Cetak Laporan Obat Keluar
+Sistem -> Database: Ambil Data Obat Keluar
+Database --> Sistem: Kirim Data Obat Keluar
+Sistem -> Admin: Kirim File Laporan Obat Keluar (PDF/Excel)
+
+' Proses Cetak Laporan Stok
+Admin -> Sistem: Pilih Cetak Laporan Stok
+Sistem -> Database: Ambil Data Stok
+Database --> Sistem: Kirim Data Stok
+Sistem -> Admin: Kirim File Laporan Stok (PDF/Excel)
+
+' Proses Cetak Laporan Penjualan
+Admin -> Sistem: Pilih Cetak Laporan Penjualan
+Sistem -> Database: Ambil Data Penjualan
+Database --> Sistem: Kirim Data Penjualan
+Sistem -> Admin: Kirim File Laporan Penjualan (PDF/Excel)
+
+@enduml

@@ -1,0 +1,62 @@
+@startuml
+actor StafGudang
+participant "Sistem" as Sistem
+participant "Database" as Database
+
+' Proses login
+StafGudang -> Sistem: Login
+Sistem -> Database: Validasi User di Database
+Database --> Sistem: Konfirmasi User Valid
+Sistem --> StafGudang: Tampilkan Menu Utama
+
+' Proses Manajemen Stok Obat
+StafGudang -> Sistem: Pilih "Manajemen Stok"
+Sistem -> Database: Ambil Data Stok
+Database --> Sistem: Kirim Data Stok
+Sistem --> StafGudang: Tampilkan Data Stok
+
+' Proses Transaksi Obat Masuk
+StafGudang -> Sistem: Proses Transaksi Obat Masuk
+Sistem -> Database: Simpan Transaksi Obat Masuk
+Database --> Sistem: Konfirmasi Transaksi Sukses
+Sistem --> StafGudang: Tampilkan Notifikasi Sukses Transaksi
+
+' Kelola Data Supplier
+StafGudang -> Sistem: Kelola Data Supplier
+Sistem -> Database: Ambil Data Supplier
+Database --> Sistem: Kirim Data Supplier
+Sistem --> StafGudang: Tampilkan Daftar Supplier
+
+' Proses Tambah/Update/Hapus Data Supplier
+StafGudang -> Sistem: Tambah/Update/Hapus Data Supplier
+
+alt Tambah Data Supplier
+  Sistem -> Database: Simpan Data Supplier Baru
+  Database --> Sistem: Konfirmasi Penyimpanan Sukses
+end
+
+alt Update Data Supplier
+  Sistem -> Database: Update Data Supplier
+  Database --> Sistem: Konfirmasi Update Sukses
+end
+
+alt Hapus Data Supplier
+  Sistem -> Database: Hapus Data Supplier
+  Database --> Sistem: Konfirmasi Penghapusan Sukses
+end
+
+Sistem --> StafGudang: Tampilkan Notifikasi Sukses
+
+' Proses Cetak Laporan Obat Masuk
+StafGudang -> Sistem: Pilih Cetak Laporan Obat Masuk
+Sistem -> Database: Ambil Data Obat Masuk
+Database --> Sistem: Kirim Data Obat Masuk
+Sistem -> StafGudang: Kirim File Laporan Obat Masuk (PDF/Excel)
+
+' Proses Cetak Laporan Stok
+StafGudang -> Sistem: Pilih Cetak Laporan Stok
+Sistem -> Database: Ambil Data Stok
+Database --> Sistem: Kirim Data Stok
+Sistem -> StafGudang: Kirim File Laporan Stok (PDF/Excel)
+
+@enduml
