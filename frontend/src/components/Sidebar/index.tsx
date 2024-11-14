@@ -51,7 +51,7 @@ const menuGroups = [
             <path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z" /></svg>
         ),
         label: "Transaksi Obat Masuk",
-        route: "/TransaksiObatMasuk",
+        route: "/TransaksiMasuk",
       },
       {
         icon: (
@@ -103,13 +103,13 @@ const menuGroups = [
             <path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 288c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128z" />
           </svg>
         ),
-        label: "Laporan Obat",
+        label: "Laporan",
         route: "#",
         subItems: [
-          { label: "Laporan Obat Masuk", route: "/LaporanObatMasuk" },
-          { label: "Laporan Obat Keluar", route: "/LaporanObatKeluar" },
-          { label: "Laporan Management Stok", route: "/LaporanManagementStok"},
-          { label: "Laporan Penjualan", route: "/LaporanPenjualan"},
+          { label: "Transaksi Obat Masuk", route: "/TObatMasuk" },
+          { label: "Transaksi Obat Keluar", route: "/TObatKeluar" },
+          { label: "Management Stok", route: "/ManagementStok"},
+          { label: "Penjualan", route: "/Penjualan"},
         ],
       },
       {
