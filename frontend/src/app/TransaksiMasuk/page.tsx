@@ -36,7 +36,7 @@ export default function IncomingTransaction() {
 
     return (
         <DefaultLayout>
-            <div className="flex flex-col md:flex-row-reverse space-y-4 md:space-y-0 md:space-x-4">
+            <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col md:flex-row-reverse space-y-4 md:space-y-0 md:space-x-4">
                 {/* Pop-up Input Card */}
                 {isModalOpen && (
                     <div className="fixed inset-0 z-50 flex justify-center items-center bg-gray-900 bg-opacity-50">
@@ -45,63 +45,16 @@ export default function IncomingTransaction() {
 
                             {/* Form Input */}
                             <div className="space-y-4 mt-6">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">No Transaksi</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter no transaksi"
-                                        className="mt-2 block w-full h-10 rounded-md border-gray-300 shadow-sm dark:bg-gray-800 dark:text-white"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Kode Obat</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter kode obat"
-                                        className="mt-2 block w-full h-10 rounded-md border-gray-300 shadow-sm dark:bg-gray-800 dark:text-white"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Nama Obat</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter nama obat"
-                                        className="mt-2 block w-full h-10 rounded-md border-gray-300 shadow-sm dark:bg-gray-800 dark:text-white"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Jenis Obat</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter jenis obat"
-                                        className="mt-2 block w-full h-10 rounded-md border-gray-300 shadow-sm dark:bg-gray-800 dark:text-white"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Jumlah</label>
-                                    <input
-                                        type="number"
-                                        placeholder="Enter jumlah"
-                                        className="mt-2 block w-full h-10 rounded-md border-gray-300 shadow-sm dark:bg-gray-800 dark:text-white"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Harga per Unit</label>
-                                    <input
-                                        type="number"
-                                        placeholder="Enter harga per unit"
-                                        className="mt-2 block w-full h-10 rounded-md border-gray-300 shadow-sm dark:bg-gray-800 dark:text-white"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Supplier</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter supplier"
-                                        className="mt-2 block w-full h-10 rounded-md border-gray-300 shadow-sm dark:bg-gray-800 dark:text-white"
-                                    />
-                                </div>
-
+                                {['No Transaksi', 'Kode Obat', 'Nama Obat', 'Jenis Obat', 'Jumlah', 'Harga per Unit', 'Supplier'].map((label, index) => (
+                                    <div key={index}>
+                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">{label}</label>
+                                        <input
+                                            type={label === 'Jumlah' || label === 'Harga per Unit' ? "number" : "text"}
+                                            placeholder={`Enter ${label.toLowerCase()}`}
+                                            className="mt-2 block w-full h-10 rounded-md border-gray-300 shadow-sm dark:bg-gray-800 dark:text-white"
+                                        />
+                                    </div>
+                                ))}
                                 {/* Tombol untuk menutup modal */}
                                 <div className="mt-4 flex justify-end space-x-2">
                                     <button
@@ -122,53 +75,86 @@ export default function IncomingTransaction() {
                 )}
 
                 {/* Output card (tabel) */}
-                <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark w-full">
                     <div className="px-4 py-6 md:px-6 xl:px-7.5">
                         <h4 className="text-xl font-semibold text-black dark:text-white">Transaksi Masuk</h4>
                     </div>
 
                     {/* Tombol untuk membuka input form */}
-                    <div className="mb-4 flex justify-end px-4">
+                    <div className="mb-4 flex justify-between items-center px-4">
+                        <form className="max-w-md w-full flex">
+                            <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                            <div className="relative w-full">
+                                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    </svg>
+                                </div>
+                                <input
+                                    type="search"
+                                    id="default-search"
+                                    className="block w-full pl-10 pr-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Search..."
+                                    required
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="ml-2 px-4 py-2 bg-blue-700 text-white rounded-lg text-sm hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                                Search
+                            </button>
+                        </form>
+
                         <button
                             onClick={toggleModal}
-                            className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md text-sm"
+                            className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md text-sm ml-4"
                         >
                             <FaPlus className="mr-2" />
+                            Add
                         </button>
                     </div>
 
-                    {/* Table Header */}
-                    <div className="grid grid-cols-10 border-t border-stroke px-2 py-2 dark:border-strokedark bg-gray-100 dark:bg-gray-800 rounded-t-lg shadow-md">
-                        {['No', 'NoTrans', 'KodeObat', 'NamaObat', 'Jumlah', 'HargaPerUnit', 'TotHarga', 'TglMasuk', 'Supplier', 'Action'].map((header, index) => (
-                            <div key={index} className="flex items-center justify-center text-center font-medium p-2">
-                                <p className="text-black dark:text-white">{header}</p>
-                            </div>
-                        ))}
-                    </div>
 
-                    {/* Table Rows */}
-                    {transactionData.map((transaction, index) => (
-                        <div
-                            className="grid grid-cols-10 border-t border-stroke px-2 py-2 dark:border-strokedark bg-white dark:bg-gray-900"
-                            key={index}
-                        >
-                            <div className="flex items-center justify-center text-center p-2"><p className="text-sm text-black dark:text-white">{index + 1}</p></div>
-                            <div className="flex items-center justify-center text-center p-2"><p className="text-sm text-black dark:text-white">{transaction.noTransaksi}</p></div>
-                            <div className="flex items-center justify-center text-center p-2"><p className="text-sm text-black dark:text-white">{transaction.kodeObat}</p></div>
-                            <div className="flex items-center justify-center text-center p-2"><p className="text-sm text-black dark:text-white">{transaction.namaObat}</p></div>
-                            <div className="flex items-center justify-center text-center p-2"><p className="text-sm text-black dark:text-white">{transaction.jumlah}</p></div>
-                            <div className="flex items-center justify-center text-center p-2"><p className="text-sm text-black dark:text-white">Rp{transaction.hargaPerUnit}</p></div>
-                            <div className="flex items-center justify-center text-center p-2"><p className="text-sm text-black dark:text-white">Rp{transaction.totalHarga}</p></div>
-                            <div className="flex items-center justify-center text-center p-2"><p className="text-sm text-black dark:text-white">{transaction.tanggalMasuk}</p></div>
-                            <div className="flex items-center justify-center text-center p-2"><p className="text-sm text-black dark:text-white">{transaction.supplier}</p></div>
-                            <div className="flex items-center justify-center text-center p-2">
-                                <button className="text-sm text-blue-500 hover:underline"><FaEdit className="mr-1" /></button>
-                                <button className="ml-2 text-sm text-red-500 hover:underline"><FaTrash className="mr-1" /></button>
-                            </div>
-                        </div>
-                    ))}     
+                    {/* Table - Adjusted to your requested structure */}
+                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-separate border-spacing-0 border border-gray-300 dark:border-gray-700">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    {['No', 'NoTrans', 'KodeObat', 'NamaObat', 'Jumlah', 'HargaPerUnit', 'TotHarga', 'TglMasuk', 'Supplier', 'Action'].map((header, index) => (
+                                        <th key={index} scope="col" className="px-6 py-3">{header}</th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {transactionData.map((transaction, index) => (
+                                    <tr key={index} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                        <td className="px-6 py-4 text-sm text-black dark:text-white">{index + 1}</td>
+                                        <td className="px-6 py-4 text-sm text-black dark:text-white">{transaction.noTransaksi}</td>
+                                        <td className="px-6 py-4 text-sm text-black dark:text-white">{transaction.kodeObat}</td>
+                                        <td className="px-6 py-4 text-sm text-black dark:text-white">{transaction.namaObat}</td>
+                                        <td className="px-6 py-4 text-sm text-black dark:text-white">{transaction.jumlah}</td>
+                                        <td className="px-6 py-4 text-sm text-black dark:text-white">Rp{transaction.hargaPerUnit}</td>
+                                        <td className="px-6 py-4 text-sm text-black dark:text-white">Rp{transaction.totalHarga}</td>
+                                        <td className="px-6 py-4 text-sm text-black dark:text-white">{transaction.tanggalMasuk}</td>
+                                        <td className="px-6 py-4 text-sm text-black dark:text-white">{transaction.supplier}</td>
+                                        <td className="px-6 py-4 text-sm">
+                                            <div className="flex space-x-2">
+                                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                    <FaEdit className="mr-1" />
+                                                </a>
+                                                <a href="#" className="font-medium text-red-500 dark:text-red-400 hover:underline">
+                                                    <FaTrash className="mr-1" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-        </DefaultLayout >
+        </DefaultLayout>
     );
 }
