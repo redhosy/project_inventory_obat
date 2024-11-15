@@ -1,5 +1,6 @@
 import DefaultLayout from "../../components/Layouts/DefaultLayout";
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaPlus, FaEdit, FaTrash, FaReply } from "react-icons/fa"; // Import ikon plus, edit, dan delete
+// import { IconName } from "react-icons/fi";
 // import Image from "next/image";
 
 export default function MedicineManagement() {
@@ -79,8 +80,8 @@ export default function MedicineManagement() {
               <div className="col-span-1 flex items-center"><p className="text-sm text-black dark:text-white">{medicine.satuan}</p></div>
               <div className="col-span-2 flex items-center"><p className="text-sm text-black dark:text-white">{medicine.tanggalExpired}</p></div>
               <div className="col-span-1 flex items-center">
-                <button className="text-sm text-blue-500 hover:underline"><FaEdit className="mr-1" /></button>
-                <button className="ml-2 text-sm text-red-500 hover:underline"><FaTrash className="mr-1" /></button>
+                <button className="text-sm text-blue-500 hover:underline"><FaEdit /></button>
+                <button className="ml-2 text-sm text-red-500 hover:underline"><FaTrash/></button>
               </div>
             </div>
           ))}

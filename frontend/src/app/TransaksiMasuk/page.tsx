@@ -1,8 +1,8 @@
 'use client';
-
 import { useState } from "react";
 import DefaultLayout from "../../components/Layouts/DefaultLayout";
-import { FaPlus, FaEdit, FaTrash } from "react-icons/fa"; // Import ikon plus, edit, dan delete
+import { FaPlus, FaEdit, FaTrash, FaReply, FaRedo } from "react-icons/fa"; // Import ikon plus, edit, dan delete
+// import { IconName } from "react-icons/fi";
 
 export default function IncomingTransaction() {
     const [isModalOpen, setIsModalOpen] = useState(false); // State untuk mengontrol modal visibility
@@ -39,7 +39,7 @@ export default function IncomingTransaction() {
             <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col md:flex-row-reverse space-y-4 md:space-y-0 md:space-x-4">
                 {/* Pop-up Input Card */}
                 {isModalOpen && (
-                    <div className="fixed inset-0 z-50 flex justify-center items-center bg-gray-900 bg-opacity-50">
+                    <div className="fixed inset-0 z-9999 flex justify-center items-center bg-gray-900 bg-opacity-50">
                         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark w-1/3 p-6">
                             <h4 className="text-xl font-semibold text-black dark:text-white">Input Transaksi Masuk</h4>
 
@@ -100,19 +100,23 @@ export default function IncomingTransaction() {
                             </div>
                             <button
                                 type="submit"
-                                className="ml-2 px-4 py-2 bg-blue-700 text-white rounded-lg text-sm hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            >
+                                className="ml-2 px-4 py-2 bg-blue-700 text-white rounded-lg text-sm hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Search
                             </button>
                         </form>
-
-                        <button
-                            onClick={toggleModal}
-                            className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md text-sm ml-4"
-                        >
-                            <FaPlus className="mr-2" />
-                            Add
-                        </button>
+                        <div className="mb-4 flex justify-between items-center px-4">
+                            <button
+                                onClick={toggleModal}
+                                className="flex items-center px-4 py-1 bg-blue-500 text-white rounded-md text-sm ml-4">
+                                <FaPlus className="mr-2" />
+                                Add
+                            </button>
+                            <button
+                                // onClick={toggleModal}
+                                className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md text-sm ml-3">
+                                <FaRedo className="mr-2" />
+                            </button>
+                        </div>
                     </div>
 
 
