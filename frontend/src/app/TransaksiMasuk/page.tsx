@@ -12,7 +12,7 @@ export default function IncomingTransaction() {
             noTransaksi: "TRX001",
             kodeObat: "OBT001",
             namaObat: "Paracetamol",
-            jenisObat: "Tablet",
+            kategoriObat: "Tablet",
             jumlah: 100,
             hargaPerUnit: 5000,
             totalHarga: 500000,
@@ -23,7 +23,7 @@ export default function IncomingTransaction() {
             noTransaksi: "TRX002",
             kodeObat: "OBT002",
             namaObat: "Ibuprofen",
-            jenisObat: "Tablet",
+            kategoriObat: "Tablet",
             jumlah: 50,
             hargaPerUnit: 8000,
             totalHarga: 400000,
@@ -36,21 +36,31 @@ export default function IncomingTransaction() {
 
     return (
         <DefaultLayout>
-            <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col md:flex-row-reverse space-y-4 md:space-y-0 md:space-x-4">
+            <div className=" bg-gray-100 dark:bg-gray-900 flex flex-col md:flex-row-reverse space-y-4 md:space-y-0 md:space-x-4">
                 {/* Pop-up Input Card */}
                 {isModalOpen && (
                     <div className="fixed inset-0 z-9999 flex justify-center items-center bg-gray-900 bg-opacity-50">
-                        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark w-1/3 p-6">
+                        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark w-1/3 p-6 max-h-[90vh] overflow-y-auto">
                             <h4 className="text-xl font-semibold text-black dark:text-white">Input Transaksi Masuk</h4>
 
                             {/* Form Input */}
                             <div className="space-y-4 mt-6">
-                                {['No Transaksi', 'Kode Obat', 'Nama Obat', 'Jenis Obat', 'Jumlah', 'Harga per Unit', 'Supplier'].map((label, index) => (
+                                {[
+                                    { label: 'No Transaksi', type: 'text', placeholder: 'Enter No Transaksi' },
+                                    { label: 'Kode Obat', type: 'text', placeholder: 'Enter kode Obat' },
+                                    { label: 'Nama Obat', type: 'text', placeholder: 'Enter Nama Obat' },
+                                    { label: 'Kategori Obat', type: 'text', placeholder: 'Enter Jenis Obat' },
+                                    { label: 'Jumlah', type: 'number', placeholder: 'Enter Jumlah' },
+                                    { label: 'Harga per Unit', type: 'number', placeholder: 'Enter Per Unit' },
+                                    { label: 'Total Harga', type: 'number', placeholder: 'Enter Total Harga' },
+                                    { label: 'Tanggal Masuk', type: 'date', placeholder: 'Select Tanggal Masuk' },
+                                    { label: 'Supplier', type: 'text', placeholder: 'Enter Nama Supplier' },
+                                ].map((field, index) => (
                                     <div key={index}>
-                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">{label}</label>
+                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">{field.label}</label>
                                         <input
-                                            type={label === 'Jumlah' || label === 'Harga per Unit' ? "number" : "text"}
-                                            placeholder={`Enter ${label.toLowerCase()}`}
+                                            type={field.type}
+                                            placeholder={field.placeholder}
                                             className="mt-2 block w-full h-10 rounded-md border-gray-300 shadow-sm dark:bg-gray-800 dark:text-white"
                                         />
                                     </div>
@@ -125,7 +135,7 @@ export default function IncomingTransaction() {
                         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-separate border-spacing-0 border border-gray-300 dark:border-gray-700">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    {['No', 'NoTrans', 'KodeObat', 'NamaObat', 'Jumlah', 'HargaPerUnit', 'TotHarga', 'TglMasuk', 'Supplier', 'Action'].map((header, index) => (
+                                    {['No', 'NoTrans', 'KodeObat', 'NamaObat','kategori Obat', 'Jumlah', 'HargaPerUnit', 'TotHarga', 'TglMasuk', 'Supplier', 'Action'].map((header, index) => (
                                         <th key={index} scope="col" className="px-6 py-3">{header}</th>
                                     ))}
                                 </tr>
@@ -137,6 +147,7 @@ export default function IncomingTransaction() {
                                         <td className="px-6 py-4 text-sm text-black dark:text-white">{transaction.noTransaksi}</td>
                                         <td className="px-6 py-4 text-sm text-black dark:text-white">{transaction.kodeObat}</td>
                                         <td className="px-6 py-4 text-sm text-black dark:text-white">{transaction.namaObat}</td>
+                                        <td className="px-6 py-4 text-sm text-black dark:text-white">{transaction.kategoriObat}</td>
                                         <td className="px-6 py-4 text-sm text-black dark:text-white">{transaction.jumlah}</td>
                                         <td className="px-6 py-4 text-sm text-black dark:text-white">Rp{transaction.hargaPerUnit}</td>
                                         <td className="px-6 py-4 text-sm text-black dark:text-white">Rp{transaction.totalHarga}</td>

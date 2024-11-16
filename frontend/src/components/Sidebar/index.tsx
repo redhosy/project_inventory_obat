@@ -47,6 +47,18 @@ const menuGroups = [
             className="fill-current"
             width="18"
             height="18"
+            viewBox="0 0 576 512">
+            <path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z" /></svg>
+        ),
+        label: "Kategori Obat",
+        route: "/KategoriObat",
+      },
+      {
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg"
+            className="fill-current"
+            width="18"
+            height="18"
             viewBox="0 0 512 512">
             <path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z" /></svg>
         ),
@@ -67,7 +79,7 @@ const menuGroups = [
           </svg>
         ),
         label: "Transaksi Obat Keluar",
-        route: "/TransaksiObatKeluar",
+        route: "/TransaksiKeluar",
       },
       {
         icon: (
@@ -108,8 +120,8 @@ const menuGroups = [
         subItems: [
           { label: "Transaksi Obat Masuk", route: "/TObatMasuk" },
           { label: "Transaksi Obat Keluar", route: "/TObatKeluar" },
-          { label: "Management Stok", route: "/ManagementStok"},
-          { label: "Penjualan", route: "/Penjualan"},
+          { label: "Management Stok", route: "/ManagementStok" },
+          { label: "Penjualan", route: "/Penjualan" },
         ],
       },
       {

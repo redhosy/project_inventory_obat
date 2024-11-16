@@ -1,59 +1,42 @@
 'use client';
 import { useState } from "react";
 import DefaultLayout from "../../components/Layouts/DefaultLayout";
-import { FaPlus, FaEdit, FaTrash, FaRedo } from "react-icons/fa"; // Import ikon plus, edit, dan delete
+import { FaPlus, FaEdit, FaTrash, FaRedo } from "react-icons/fa";
 
-export default function MedicineManagement() {
-    const [isModalOpen, setIsModalOpen] = useState(false); // State untuk mengontrol modal visibility
+export default function CategoryManagement() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const medicineData = [
+    // Data kategori dummy
+    const categoryData = [
         {
-            kodeObat: "OBT001",
-            namaObat: "Paracetamol",
-            kategoriObat: "Tablet",
-            stok: 100,
-            hargaObat: 5000,
-            satuan: "Strip",
-            tanggalExpired: "2023-12-01",
+            kodeKategori: "KTG001",
+            namaKategori: "Tablet",
+            deskripsi: "Obat berbentuk tablet, biasanya dikonsumsi secara oral.",
         },
         {
-            kodeObat: "OBT002",
-            namaObat: "Ibuprofen",
-            kategoriObat: "Tablet",
-            stok: 50,
-            hargaObat: 8000,
-            satuan: "Box",
-            tanggalExpired: "2024-01-15",
+            kodeKategori: "KTG002",
+            namaKategori: "Sirup",
+            deskripsi: "Obat cair dengan rasa manis, sering untuk anak-anak.",
         },
     ];
 
-    const toggleModal = () => setIsModalOpen(!isModalOpen); // Fungsi untuk toggle modal
+    const toggleModal = () => setIsModalOpen(!isModalOpen);
 
     return (
         <DefaultLayout>
             <div className="bg-gray-100 dark:bg-gray-900 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                 {/* Pop-up Input Card */}
                 {isModalOpen && (
-                    <div className="fixed inset-0 z-9999 flex justify-center items-center bg-gray-900 bg-opacity-50">
+                    <div className="fixed inset-0 z-50 flex justify-center items-center bg-gray-900 bg-opacity-50">
                         <div className="rounded-md border border-stroke bg-white shadow-lg dark:border-strokedark dark:bg-boxdark w-1/3 p-6 max-h-[90vh] overflow-y-auto">
-                            <h4 className="text-xl font-semibold text-black dark:text-white">Tambah Obat</h4>
-
-                            {/* Form Input */}
+                            <h4 className="text-xl font-semibold text-black dark:text-white">Tambah Kategori</h4>
                             <div className="space-y-4 mt-6">
                                 {[{
-                                    label: 'Kode Obat', type: 'text', placeholder: 'Masukkan kode obat'
+                                    label: 'Kode Kategori', type: 'text', placeholder: 'Masukkan kode kategori'
                                 }, {
-                                    label: 'Nama Obat', type: 'text', placeholder: 'Masukkan nama obat'
+                                    label: 'Nama Kategori', type: 'text', placeholder: 'Masukkan nama kategori'
                                 }, {
-                                    label: 'kategori Obat', type: 'text', placeholder: 'Masukkan jenis obat'
-                                }, {
-                                    label: 'Stok', type: 'number', placeholder: 'Masukkan stok'
-                                }, {
-                                    label: 'Harga', type: 'number', placeholder: 'Masukkan harga obat'
-                                }, {
-                                    label: 'Satuan', type: 'text', placeholder: 'Masukkan satuan'
-                                }, {
-                                    label: 'Tanggal Expired', type: 'date', placeholder: 'Pilih tanggal expired'
+                                    label: 'Deskripsi', type: 'text', placeholder: 'Masukkan deskripsi kategori'
                                 }].map((field, index) => (
                                     <div key={index}>
                                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">{field.label}</label>
@@ -83,11 +66,11 @@ export default function MedicineManagement() {
                 {/* Output card (tabel) */}
                 <div className="rounded-sm border border-stroke bg-white shadow-lg dark:border-strokedark dark:bg-boxdark w-full">
                     <div className="px-4 py-6">
-                        <h4 className="text-xl font-semibold text-black dark:text-white">Management Obat</h4>
+                        <h4 className="text-xl font-semibold text-black dark:text-white">Management Kategori</h4>
                     </div>
 
-                     {/* Tombol untuk membuka input form */}
-                     <div className="mb-4 flex justify-between items-center px-4">
+                    {/* Tombol untuk membuka input form */}
+                    <div className="mb-4 flex justify-between items-center px-4">
                         <form className="max-w-md w-full flex">
                             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                             <div className="relative w-full">
@@ -125,26 +108,23 @@ export default function MedicineManagement() {
                         </div>
                     </div>
 
+
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-separate border-spacing-0 border border-gray-300 dark:border-gray-700">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    {['No', 'Kode Obat', 'Nama Obat', 'Kategori', 'Stok', 'Harga', 'Satuan', 'Tgl Expired', 'Aksi'].map((header, index) => (
+                                    {['No', 'Kode Kategori', 'Nama Kategori', 'Deskripsi', 'Aksi'].map((header, index) => (
                                         <th key={index} className="px-6 py-3">{header}</th>
                                     ))}
                                 </tr>
                             </thead>
                             <tbody>
-                                {medicineData.map((medicine, index) => (
+                                {categoryData.map((category, index) => (
                                     <tr key={index} className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                         <td className="px-6 py-4">{index + 1}</td>
-                                        <td className="px-6 py-4">{medicine.kodeObat}</td>
-                                        <td className="px-6 py-4">{medicine.namaObat}</td>
-                                        <td className="px-6 py-4">{medicine.kategoriObat}</td>
-                                        <td className="px-6 py-4">{medicine.stok}</td>
-                                        <td className="px-6 py-4">Rp{medicine.hargaObat}</td>
-                                        <td className="px-6 py-4">{medicine.satuan}</td>
-                                        <td className="px-6 py-4">{medicine.tanggalExpired}</td>
+                                        <td className="px-6 py-4">{category.kodeKategori}</td>
+                                        <td className="px-6 py-4">{category.namaKategori}</td>
+                                        <td className="px-6 py-4">{category.deskripsi}</td>
                                         <td className="px-6 py-4 flex space-x-2">
                                             <FaEdit className="text-blue-500 cursor-pointer" />
                                             <FaTrash className="text-red-500 cursor-pointer" />
