@@ -1,8 +1,9 @@
 "use client";
 import "jsvectormap/dist/jsvectormap.css";
 import "flatpickr/dist/flatpickr.min.css";
-import "../css/satoshi.css";
-import "../css/style.css";
+// import "../css/satoshi.css";
+// import "../css/style.css";
+import "../css/global.css";
 import React, { useEffect, useState } from "react";
 import Loader from "../components/common/Loader";
 
@@ -22,11 +23,17 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>
-        <div className="dark:bg-boxdark-2 dark:text-bodydark">
-          {loading ? <Loader /> : children}
+  <body suppressHydrationWarning={true}>
+    <div className="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-300">
+      {loading ? (
+        <div className="flex justify-center items-center h-screen">
+          <Loader />
         </div>
-      </body>
-    </html>
+      ) : (
+        children
+      )}
+    </div>
+  </body>
+</html>
   );
 }
